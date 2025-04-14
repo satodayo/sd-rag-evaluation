@@ -16,7 +16,9 @@ root/
 ├─ .devcontainer/ # DevContainerに関するファイルが含まれています
 ├─ evaluation/ # 2025年3月号のSoftwareDesign誌で掲載している各Metricの評価実装コードが含まれています。
 ├─ langsmith/ # 2025年4月号のSoftwareDesign誌で掲載しているLangSmithを利用した評価サイクル実装コードが含まれています。
-├─ source_docs/ # 2025年4月号のSoftwareDesign誌で掲載しているテストセット生成時に使用する元データ
+├─ source_docs/ # 2025年4月号のSoftwareDesign誌で掲載しているテストセット生成時に使用する元データが含まれています。
+├─ rag_sample/ # 2025年5月号のSoftwareDesign誌で掲載しているRAGの実装が含まれています。
+├─ rag_source_docs/ # 2025年5月号のSoftwareDesign誌で掲載しているRAGの実装で利用する就業規則が含まれています。
 ├─ .env.sample # 本アプリケーションで必要となる.envファイルのサンプルです。こちらを元に.envファイルを生成してください。 
 ├─ requirements.txt # 本アプリケーションで必要となるパッケージリストになります。 
 └─ README.md
@@ -62,4 +64,24 @@ python langsmith/register_testset.py
 2. 登録したテストセットを利用して評価を行う
 ```
 python langsmith/evaluate.py
+```
+
+### RAGのサンプルコードの実行
+
+Azure AI SearchおよびAzure OpenAI Serviceをデプロイし、接続情報を.envファイルに追加する
+
+1. インデクサーの実行
+```
+python indexer.py
+```
+
+2. オーケストレーターの実行
+```
+python orchestraotr.py
+```
+
+3. LangSmith上での評価の実行
+
+```
+python evaluate.py
 ```
