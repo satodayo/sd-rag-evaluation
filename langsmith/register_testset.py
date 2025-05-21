@@ -21,7 +21,7 @@ os.environ["OPENAI_API_VERSION"] = os.getenv("OPENAI_API_VERSION")
 async def main():
     
     generator_llm = LangchainLLMWrapper(AzureChatOpenAI(
-        azure_deployment="gpt-4o-mini",
+        azure_deployment="gpt-4o-mini-deploy",
         temperature=0.8,
     ))
 
@@ -32,13 +32,13 @@ async def main():
     generator = TestsetGenerator(llm=generator_llm, embedding_model=generator_embeddings)
 
     # 対象ファイルの読み込み
-    loader = DirectoryLoader("source_docs/", glob="fujisan.txt")
+    loader = DirectoryLoader("rag_source_docs/", glob="syugyo-kisoku.txt")
     docs = loader.load()
     
     personas = [
         Persona(
-            name="Tourist",
-            role_description="富士山の見どころや、周辺の観光情報を知りたい観光客",
+            name="Employee",
+            role_description="様々な社内規約について知りたい社員",
             )
     ]
     
@@ -62,7 +62,7 @@ async def main():
     # テストセット生成
     dataset = generator.generate_with_langchain_docs(
         docs[:],
-        testset_size=2, #生成するテストセットの数
+        testset_size=5, #生成するテストセットの数
         transforms=transforms,
         query_distribution=distribution,
     )   
