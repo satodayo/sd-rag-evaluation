@@ -19,6 +19,7 @@ root/
 ├─ source_docs/ # 2025年4月号のSoftwareDesign誌で掲載しているテストセット生成時に使用する元データが含まれています。
 ├─ rag_sample/ # 2025年5月号のSoftwareDesign誌で掲載しているRAGの実装が含まれています。
 ├─ rag_source_docs/ # 2025年5月号のSoftwareDesign誌で掲載しているRAGの実装で利用する就業規則が含まれています。
+├─ rag_chunking/ # 2025年6月号のSoftwareDesign誌で掲載しているチャンキングの実装が含まれています。
 ├─ .env.sample # 本アプリケーションで必要となる.envファイルのサンプルです。こちらを元に.envファイルを生成してください。 
 ├─ requirements.txt # 本アプリケーションで必要となるパッケージリストになります。 
 └─ README.md
@@ -83,5 +84,21 @@ python orchestraotr.py
 3. LangSmith上での評価の実行
 
 ```
-python evaluate.py
+python evaluate.pyW
+```
+
+### チャンキングの実行
+
+Azure AI Document Intelligenceをデプロイし、接続情報を.envファイルに追加する
+
+1. 各チャンキングの実行
+```
+# document intelligenceを利用したベーシックなチャンキング
+python document_intelligence.py
+
+# document based chunking
+python document_intelligence.py
+
+# semantic chunking
+python document_intelligence.py
 ```
